@@ -2,6 +2,9 @@ name: Build & Publish GitHub Release
 
 on:
   push:
+    branches:
+      - main
+      - master
     tags:
       - 'v*'
   workflow_dispatch:
@@ -58,13 +61,20 @@ jobs:
       - name: Prepare Release APK
         run: |
           mkdir -p release_assets
-          TAG_NAME="${{ github.event.inputs.tag || github.ref_name }}"
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG_NAME="${{ github.ref_name }}"
+          elif [[ -n "${{ github.event.inputs.tag }}" ]]; then
+            TAG_NAME="${{ github.event.inputs.tag }}"
+          else
+            TAG_NAME="v1.0.0"
+          fi
+          echo "RELEASE_TAG=${TAG_NAME}" >> "$GITHUB_ENV"
           cp app/build/outputs/apk/debug/app-debug.apk "release_assets/A-Tweaker-${TAG_NAME}.apk"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
-          name: A-Tweaker ${{ github.event.inputs.tag || github.ref_name }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: A-Tweaker ${{ env.RELEASE_TAG }}
           generate_release_notes: true
           files: release_assets/*.apk
