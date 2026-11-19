@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path name="termux_downloads" path="termux_env/downloads/" />
+    <files-path name="termux_home" path="termux_env/home/" />
+    <cache-path name="cache" path="." />
+</paths>

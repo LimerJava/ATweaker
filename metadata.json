@@ -1,0 +1,6 @@
+{
+  "name": "A-Tweaker",
+  "description": "Samsung Galaxy A-series (A01-A57) hidden ADB/Shizuku system tweaker, FOTA update checker, and persistent Termux-grade terminal with package manager, GitHub installer, and root file manager.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

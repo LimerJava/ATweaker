@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">A-Tweaker</string>
+    <string name="shortcut_terminal_short">Terminal</string>
+    <string name="shortcut_terminal_long">A-Tweaker Terminal</string>
+</resources>
